@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 // import "./App.css";
 import styles from "./App.module.css";
 
 // interfaces defines an object type
-interface GridCell {
-  x: number;
-  y: number;
-}
+// interface GridCell {
+//   x: number;
+//   y: number;
+// }
 
-interface GridCellState {
-  currentSymbol: "O" | "X" | undefined;
-}
+// interface GridCellState {
+//   currentSymbol: "O" | "X" | undefined;
+// }
 
 const WINNING_COMBINATIONS = [
   [0, 1, 2],
@@ -104,7 +104,7 @@ function App() {
 
   const changeState = (index: number) => {
     const res = [...clickMap];
-    const empty = DEFAULT_MAP;
+    // const empty = DEFAULT_MAP;
 
     if (clickMap[index] === undefined) {
       isPlayer1 ? (res[index] = "O") : (res[index] = "X");
