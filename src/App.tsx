@@ -102,13 +102,17 @@ function App() {
     }
   };
   const tie = (res: any) => {
-    for (let i = 0; i < res.length; i++) {
-      if (res[i] === undefined) {
-        continue;
-      } else {
-        setIsOver(true);
-        alert("no winner");
+    let i = 0;
+    let count = 0;
+    while (i < res.length) {
+      if (res[i] !== undefined) {
+        count += 1;
       }
+      i += 1;
+    }
+    if (count === 9) {
+      alert("no winner");
+      setIsOver(true);
     }
   };
   const changeState = (index: number) => {
