@@ -71,8 +71,8 @@ function App() {
       setClickMap([...DEFAULT_MAP]);
       setIsOver(false);
     }
-    console.log(others.count);
-  }, [isOver]);
+    console.log("user count is", others.count);
+  }, [isOver, others.count]);
 
   const calculateWinner = (res: any) => {
     for (let i = 0; i < WINNING_COMBINATIONS.length; i++) {
