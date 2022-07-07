@@ -96,10 +96,10 @@ function App() {
           // setClickMap([...DEFAULT_MAP]);
           setIsOver(true);
           alert("Player 2 Wins");
-        } else {
-          alert("no winner");
-          setIsOver(true);
         }
+      } else {
+        setIsOver(true);
+        alert("no one wins");
       }
     }
   };
