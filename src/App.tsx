@@ -2,16 +2,9 @@ import React, { useEffect, useState } from "react";
 // import logo from "./logo.svg";
 // import "./App.css";
 import styles from "./App.module.css";
+import { useOthers } from "./liveblocks.config";
 
-// interfaces defines an object type
-// interface GridCell {
-//   x: number;
-//   y: number;
-// }
-
-// interface GridCellState {
-//   currentSymbol: "O" | "X" | undefined;
-// }
+// https://liveblocks.io/docs/get-started/react
 
 const WINNING_COMBINATIONS = [
   [0, 1, 2],
@@ -46,6 +39,8 @@ const DEFAULT_MAP = [
 ];
 
 function App() {
+  const others = useOthers();
+
   // const CELLS: GridCell[] = [
   //   { x: 0, y: 0 },
   //   { x: 1, y: 0 },
@@ -76,6 +71,7 @@ function App() {
       setClickMap([...DEFAULT_MAP]);
       setIsOver(false);
     }
+    console.log(others.count);
   }, [isOver]);
 
   const calculateWinner = (res: any) => {
