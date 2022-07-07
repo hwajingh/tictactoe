@@ -1,3 +1,4 @@
+import { timeEnd } from "console";
 import React, { useEffect, useState } from "react";
 // import logo from "./logo.svg";
 // import "./App.css";
@@ -97,13 +98,19 @@ function App() {
           setIsOver(true);
           alert("Player 2 Wins");
         }
-      } else {
-        setIsOver(true);
-        alert("no one wins");
       }
     }
   };
-
+  const tie = (res: any) => {
+    for (let i = 0; i < res.length; i++) {
+      if (res[i] === undefined) {
+        continue;
+      } else {
+        setIsOver(true);
+        alert("no winner");
+      }
+    }
+  };
   const changeState = (index: number) => {
     const res = [...clickMap];
     // const empty = DEFAULT_MAP;
@@ -112,6 +119,7 @@ function App() {
       isPlayer1 ? (res[index] = "O") : (res[index] = "X");
       setClickMap(res);
       calculateWinner(res);
+      tie(res);
     }
   };
 
