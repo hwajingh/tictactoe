@@ -40,9 +40,9 @@ const DEFAULT_MAP = [
 ];
 
 function App() {
-  const others = useOthers()
-    .toArray()
-    .some((user) => user.presence?.isPlayer1);
+  // const others = useOthers()
+  //   .toArray()
+  //   .some((user) => user.presence?.isPlayer1);
   const updateMyPresence = useUpdateMyPresence();
 
   // const CELLS: GridCell[] = [
@@ -75,8 +75,7 @@ function App() {
       setClickMap([...DEFAULT_MAP]);
       setIsOver(false);
     }
-    console.log("user count is", others);
-  }, [isOver, others]);
+  }, [isOver]);
 
   const calculateWinner = (res: any) => {
     for (let i = 0; i < WINNING_COMBINATIONS.length; i++) {
