@@ -1,9 +1,7 @@
-import { timeEnd } from "console";
 import React, { useEffect, useState } from "react";
 // import logo from "./logo.svg";
 // import "./App.css";
 import styles from "./App.module.css";
-import { useOthers, useUpdateMyPresence } from "./liveblocks.config";
 
 // https://liveblocks.io/docs/get-started/react
 
@@ -43,7 +41,6 @@ function App() {
   // const others = useOthers()
   //   .toArray()
   //   .some((user) => user.presence?.isPlayer1);
-  const updateMyPresence = useUpdateMyPresence();
 
   // const CELLS: GridCell[] = [
   //   { x: 0, y: 0 },
@@ -134,7 +131,7 @@ function App() {
             className={styles.gridItem}
             onClick={() => {
               setIsPlayer1(!isPlayer1);
-              updateMyPresence({ currentPlayer: isPlayer1 });
+              // updateMyPresence({ currentPlayer: isPlayer1 });
               changeState(index);
             }}
           >
