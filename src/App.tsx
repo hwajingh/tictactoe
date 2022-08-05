@@ -139,6 +139,7 @@ function App() {
           </div>
         ))}
       </div>
+      <div className={styles.footer}>Made by Tiger Hong</div>
     </div>
   );
 }

@@ -22,3 +22,10 @@
 /* // display: grid 
   // display: flex --> flexbox 
 */
+
+.footer {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-weight: bold;
+}
