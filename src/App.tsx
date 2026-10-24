@@ -80,22 +80,27 @@ function App() {
       // comb = [0, 1, 2]
       //
       // clickMap = ["0", "X,", undefined, ... "O", "undefined", "X"]
+      // FIX: added the res[comb[0]] guard so three empty squares can never
+      // count as a win, and return true so the caller can skip the tie check.
       if (
+        res[comb[0]] &&
         res[comb[0]] === res[comb[1]] &&
-        res[comb[1]] === res[comb[2]] &&
-        res[comb[0]] === res[comb[2]]
+        res[comb[1]] === res[comb[2]]
       ) {
         if (isPlayer1 && res[comb[0]] === "O") {
           // setClickMap([...DEFAULT_MAP]);
           setIsOver(true);
           alert("Player 1 Wins");
+          return true;
         } else if (!isPlayer1 && res[comb[0]] === "X") {
           // setClickMap([...DEFAULT_MAP]);
           setIsOver(true);
           alert("Player 2 Wins");
+          return true;
         }
       }
     }
+    return false;
   };
   const tie = (res: any) => {
     let i = 0;
@@ -118,8 +123,12 @@ function App() {
     if (clickMap[index] === undefined) {
       isPlayer1 ? (res[index] = "O") : (res[index] = "X");
       setClickMap(res);
-      calculateWinner(res);
-      tie(res);
+      // FIX: previously tie() ran even after a win, so a winning 9th move
+      // could fire both a win alert and a "no winner" alert.
+      const won = calculateWinner(res);
+      if (!won) {
+        tie(res);
+      }
     }
   };
 
@@ -128,11 +137,16 @@ function App() {
       <div className={styles.root}>
         {clickMap.map((c, index) => (
           <div
+            key={index}
             className={styles.gridItem}
             onClick={() => {
-              setIsPlayer1(!isPlayer1);
-              // updateMyPresence({ currentPlayer: isPlayer1 });
-              changeState(index);
+              // FIX: previously the turn flipped even on an occupied square,
+              // because the toggle ran before changeState() checked it.
+              if (clickMap[index] === undefined) {
+                setIsPlayer1(!isPlayer1);
+                // updateMyPresence({ currentPlayer: isPlayer1 });
+                changeState(index);
+              }
             }}
           >
             {c}
